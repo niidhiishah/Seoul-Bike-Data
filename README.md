@@ -29,12 +29,18 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 ## Methods
 
 ### Sourcing the data
++ The data was downloaded from the data sources and stored to the local file system
++ In the "[scripts](Scripts/Gathering)" folder, there is a code snippet that will automate the download from url 
 
 ### Storing the data
++ The data was then moved into a Storage Container on Microsoft Azure using [this](Scripts/Storing) code.
 
 ### Modeling the data
++ Lastly, DbSchema was used to create a dimensional model for the data.
++ In the scripts folder, there is a script to create the model. The code can be found [here](Scripts/Modeling).
 
-# Conclusions
+## Issues I ran into/Future Considerations
++ Github will not allow you to upload code with your AWS access key, etc. Make sure to remove it and replace with placeholders
++ When attempting to upload a picture to the repo through VS Code, there was a prompt "There are no staged changes to commit. Would you like to stage all your changes and commit them directly?" DO NOT PRESS YES. It makes it very difficult to commit and push changes from that point forward (hence why the data modeling folder has not been displayed)
 
-## Future Considerations 
 
