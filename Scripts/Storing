@@ -1,0 +1,57 @@
+#%%
+!pip install azure-storage-blob # for storing in azure
+!pip install pandas
+
+#%%
+import pandas as pd
+import numpy as np
+import requests
+from io import StringIO
+from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+
+#%%
+# define url - csv file in this case
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00560/SeoulBikeData.csv"
+
+# data is must be retreived through 'get'
+response = requests.get(url)
+
+# check if the request was successful (status code 200)
+if response.status_code == 200:
+    # save the downloaded csv content to a file
+    with open("SeoulBikeData.csv", "wb") as file:
+        file.write(response.content)
+    
+    # read the downloaded CSV file into pandas dataframe with 'latin-1' encoding
+    # kept getting a "utf-8' codec can't decode byte 0xb0 in position 40: invalid start byte" if the latin-1 encoding is not specified
+    df_raw = pd.read_csv("SeoulBikeData.csv", encoding='latin-1')
+    
+    # display info about the dataframe
+    print(df_raw.info())
+    print(df_raw.head())
+else:
+    print("Failed to download the dataset.")
+
+#%%
+# STORING DATA 
+# use connection string to connect to azure container
+CONNECTION_STRING_AZURE_STORAGE = 'connectionkey'
+CONTAINER_AZURE = 'container_name'
+blob_name = 'blob_name'
+
+# create a file-like object
+output = StringIO()
+df_raw.to_csv(output, index=False)
+data = output.getvalue()
+output.close()
+
+# create blobserviceclient object 
+blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING_AZURE_STORAGE)
+
+# get a blob client using the container name and blob name
+blob_client = blob_service_client.get_blob_client(container=CONTAINER_AZURE, blob=blob_name)
+
+# upload the CSV data
+blob_client.upload_blob(data,overwrite=True)
+
+print(f"Uploaded {blob_name} to Azure Blob Storage in container {CONTAINER_AZURE}")
