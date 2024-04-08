@@ -1,0 +1,56 @@
+CREATE SCHEMA INSTANCE;
+
+CREATE TABLE seoulbikedata.INSTANCE.dim_date ( 
+	date_id array<integer> NOT NULL  ,
+	year date  ,
+	month date  ,
+	day date  ,
+	hour datetime  
+ );
+
+ALTER TABLE seoulbikedata.INSTANCE.dim_date ADD PRIMARY KEY ( date_id )  NOT ENFORCED;
+
+CREATE TABLE seoulbikedata.INSTANCE.dim_time ( 
+	time_id datetime NOT NULL  ,
+	season array<string>  ,
+	holiday array<string>  ,
+	day_of_week array<string>  ,
+	working_day boolean  
+ );
+
+ALTER TABLE seoulbikedata.INSTANCE.dim_time ADD PRIMARY KEY ( time_id )  NOT ENFORCED;
+
+CREATE TABLE seoulbikedata.INSTANCE.dim_weatherConditions ( 
+	weather_id array<integer> NOT NULL  ,
+	temperature int64  ,
+	humidity array<string>  ,
+	wind_speed array<integer>  ,
+	visibility array<string>  ,
+	dew_point_temp array<integer>  ,
+	solar_radiation array<string>  ,
+	rainfall array<integer>  ,
+	snowfall array<integer>  
+ );
+
+ALTER TABLE seoulbikedata.INSTANCE.dim_weatherConditions ADD PRIMARY KEY ( weather_id )  NOT ENFORCED;
+
+CREATE TABLE seoulbikedata.INSTANCE.facts_bike ( 
+	fact_id array<integer> NOT NULL  ,
+	date_id date NOT NULL  ,
+	bikes_rented array<integer>  ,
+	weather_id array<string> NOT NULL  ,
+	time_id array<string> NOT NULL  
+ );
+
+ALTER TABLE seoulbikedata.INSTANCE.facts_bike ADD PRIMARY KEY ( fact_id, time_id, date_id, weather_id )  NOT ENFORCED;
+
+CREATE TABLE seoulbikedata.INSTANCE.facts_bike_dim_weatherConditions ( 
+	weather_id array<integer>  ,
+	fact_id array<integer>  
+ );
+
+ALTER TABLE seoulbikedata.INSTANCE.facts_bike_dim_weatherConditions ADD CONSTRAINT fkt_facts_bike_dim_weatherConditions FOREIGN KEY ( weather_id ) REFERENCES seoulbikedata.INSTANCE.dim_weatherConditions( weather_id ) NOT ENFORCED;
+
+ALTER TABLE seoulbikedata.INSTANCE.facts_bike_dim_weatherConditions ADD CONSTRAINT fks_facts_bike_dim_weatherConditions FOREIGN KEY ( fact_id ) REFERENCES seoulbikedata.INSTANCE.facts_bike( fact_id ) NOT ENFORCED;
+
+
