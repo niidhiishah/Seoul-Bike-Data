@@ -39,7 +39,7 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 + Lastly, DbSchema was used to create a dimensional model for the data.
 + In the scripts folder, there is a script to create the model. The code can be found [here](Scripts/Modeling).
 
-! [DB Schema](https://github.com/niidhiishah/cis4400-hw1/blob/main/dbschema.png)
+![DB Schema](https://github.com/niidhiishah/cis4400-hw1/blob/main/dbschema.png)
 
 ## Issues I ran into/Future Considerations
 + Github will not allow you to upload code with your AWS access key, etc. Make sure to remove it and replace with placeholders
