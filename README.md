@@ -1,4 +1,3 @@
-# cis4400-hw1
 # Seoul Bike Sharing Demand Data 
 ## Data Warehousing Project - CIS 4400
 ### Nidhi Shah 
@@ -40,6 +39,17 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 + In the scripts folder, there is a script to create the model. The code can be found [here](Scripts/Modeling).
 
 ![DB Schema](https://github.com/niidhiishah/cis4400-hw1/blob/main/dbschema.png)
+
+### Transforming the data 
++ x
+
+### Updated data model
+
+
+### Serving the data 
++ x
+
+
 
 ## Issues I ran into/Future Considerations
 + Github will not allow you to upload code with your AWS access key, etc. Make sure to remove it and replace with placeholders
