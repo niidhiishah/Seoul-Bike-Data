@@ -41,7 +41,7 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 ![DB Schema](https://github.com/niidhiishah/cis4400-hw1/blob/main/dbschema.png)
 
 ### Transforming the data 
-+ x
++ The data was downloaded from the data sources and stored to the local file system
 
 ### Updated data model
 
