@@ -1,0 +1,91 @@
+#%%
+!pip install azure-storage-blob # for storing in azure
+
+#%%
+import pandas as pd
+import numpy as np
+import requests
+from io import StringIO
+from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+import pyodbc
+
+#%%
+import pandas as pd
+import io
+from datetime import datetime
+from azure.storage.blob import BlobServiceClient
+
+# Azure Blob Storage connection string and container name
+CONNECTION_STRING_AZURE_STORAGE = "connection string"
+CONTAINER_AZURE ='container name'
+blob_name = "blob name"
+
+# Create a BlobServiceClient object + get a blob client for specified job
+blob_service_client = BlobServiceClient.from_connection_string(CONNECTION_STRING_AZURE_STORAGE)
+blob_client = blob_service_client.get_blob_client(container=CONTAINER_AZURE, blob=blob_name)
+
+# Download the blob data as bytes and convert the bytes data to a dataframe
+blob_data = blob_client.download_blob().readall()
+df = pd.read_csv(io.BytesIO(blob_data))
+
+# TRANSFORMATIONS
+
+# Unified date format YYYY-MM-DD
+df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
+
+# Splitting the date into multiple units
+df['Year'] = df['Date'].dt.year
+df['Quarter'] = df['Date'].dt.quarter
+df['Month'] = df['Date'].dt.month
+df['Day'] = df['Date'].dt.day
+df['Hour'] = df['Date'].dt.hour
+
+# Removing NULL values
+df = df.dropna()
+
+# Removing Duplicate rows
+df = df.drop_duplicates()
+
+# Rename the column
+df = df.rename(columns={'Temperature': 'Temperature_Celsius'})
+
+# Use correct data types
+df = df.astype({
+    'Temperature_Celsius': 'float',
+    'Humidity_Percent': 'float',
+    'Rentals_Count': 'int'
+})
+
+# Adding new columns
+df['Total Rentals'] = df['Rental Data'] + df['Temperature']  
+
+# Create a data mapping
+data_mapping = pd.DataFrame({
+    'Field Name': ['Temperature', 'Humidity', 'Rental Data', 'Total Rentals'],
+    'Data Type': ['float', 'float', 'int', 'int'],
+    'Description': ['Temperature in Celsius', 'Relative Humidity', 'Number of Bike Rentals', 'Total Rentals including Temperature'],
+    'Source Column': ['Temperature', 'Humidity', 'Rental Data', 'Temperature, Rental Data'],
+    'Destination Column': ['Temperature_Celsius', 'Humidity_Percent', 'Rentals_Count', 'Total_Rentals']
+})
+
+# Save data mapping to CSV
+data_mapping.to_csv('data_mapping.csv', index=False)
+
+# Print transformed DataFrame
+print(df)
+
+
+#%%
+# Update Data Dictionary
+# Adding a new field and description
+new_entry = {
+    'Field Name': 'Total Rentals',
+    'Data Type': 'int',
+    'Description': 'No. of Rental Data Records + No. of Temperature Records',
+    'Source Column': 'Temperature, Rental Data'
+    'Destination Column': 'Total_Rentals'
+}
+data_dictionary = data_dictionary.append(new_entry, ignore_index=True)
+
+# Save Data Dictionary to CSV (or to a database)
+data_dictionary.to_csv('updated_data_dictionary.csv', index=False)
