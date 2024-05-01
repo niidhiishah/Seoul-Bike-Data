@@ -41,7 +41,13 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 ![DB Schema](https://github.com/niidhiishah/cis4400-hw1/blob/main/dbschema.png)
 
 ### Transforming the data 
-+ The data was downloaded from the data sources and stored to the local file system
++ The data was transformed according to specific business rules. 
++ Examples of **some** transformations that were done: 
+    + Unifying date format YYYY-MM-DD
+    + Removing null values
+    + Removing duplicate values
+    + Using the correct data type
+ + The code for the transformations can be found [here](Scripts/Transforming).
 
 ### Updated data model
 
