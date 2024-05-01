@@ -47,7 +47,9 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
     + Removing null values
     + Removing duplicate values
     + Using the correct data type
++ The data mapping can be found [here](Data Dictionary/Data Mapping.csv)
  + The code for the transformations can be found [here](Scripts/Transforming).
+
 
 ### Updated data model
 
