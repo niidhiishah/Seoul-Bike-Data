@@ -1,0 +1,43 @@
+-- Create the schema
+CREATE SCHEMA INSTANCE;
+
+-- Create dimension tables
+CREATE TABLE INSTANCE.dim_date (
+    date_id INT IDENTITY(1,1) PRIMARY KEY,
+    year DATE,
+    month DATE,
+    day DATE,
+    hour DATETIME
+);
+
+CREATE TABLE INSTANCE.dim_time (
+    time_id INT IDENTITY(1,1) PRIMARY KEY,
+    season VARCHAR(50),
+    holiday VARCHAR(50),
+    day_of_week VARCHAR(50),
+    working_day BOOLEAN
+);
+
+CREATE TABLE INSTANCE.dim_weatherConditions (
+    weather_id INT IDENTITY(1,1) PRIMARY KEY,
+    temperature INT,
+    humidity VARCHAR(50),
+    wind_speed INT,
+    visibility VARCHAR(50),
+    dew_point_temp INT,
+    solar_radiation VARCHAR(50),
+    rainfall INT,
+    snowfall INT
+);
+
+-- Create the fact table
+CREATE TABLE INSTANCE.facts_bike (
+    fact_id INT IDENTITY(1,1) PRIMARY KEY,
+    date_id DATE,
+    bikes_rented INT,
+    weather_id INT,
+    time_id INT,
+    CONSTRAINT fk_date_id FOREIGN KEY (date_id) REFERENCES INSTANCE.dim_date(date_id),
+    CONSTRAINT fk_time_id FOREIGN KEY (time_id) REFERENCES INSTANCE.dim_time(time_id),
+    CONSTRAINT fk_weather_id FOREIGN KEY (weather_id) REFERENCES INSTANCE.dim_weatherConditions(weather_id)
+);
