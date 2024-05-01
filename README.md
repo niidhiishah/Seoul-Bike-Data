@@ -55,7 +55,7 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 + Using LucidChart, the dimensional model was updated to reflect new surrogate keys
 + The updated script for creating this model can be found [here](https://github.com/niidhiishah/Seoul-Bike-Data/blob/main/Scripts/Updated%20Modeling)
 
-! [Updated DB Schema](https://github.com/niidhiishah/Seoul-Bike-Data/blob/main/dbschema/Updated%20dbschema.png)
+![Updated DB Schema](https://github.com/niidhiishah/Seoul-Bike-Data/blob/main/dbschema/Updated%20dbschema.png)
 
 ### Serving the data 
 + x
