@@ -38,7 +38,7 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 + Lastly, DbSchema was used to create a dimensional model for the data.
 + In the scripts folder, there is a script to create the model. The code can be found [here](Scripts/Modeling).
 
-![DB Schema](https://github.com/niidhiishah/cis4400-hw1/blob/main/dbschema.png)
+![DB Schema](dbschema/dbschema.png)
 
 ### Transforming the data 
 + The data was transformed according to specific business rules. 
@@ -52,7 +52,10 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 
 
 ### Updated data model
++ Using LucidChart, the dimensional model was updated to reflect new surrogate keys
++ The updated script for creating this model can be found [here](https://github.com/niidhiishah/Seoul-Bike-Data/blob/main/Scripts/Updated%20Modeling)
 
+! [Updated DB Schema](https://github.com/niidhiishah/Seoul-Bike-Data/blob/main/dbschema/Updated%20dbschema.png)
 
 ### Serving the data 
 + x
