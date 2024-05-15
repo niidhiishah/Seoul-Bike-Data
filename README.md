@@ -2,7 +2,7 @@
 ## Data Warehousing Project - CIS 4400
 ### Nidhi Shah 
 
-![Seoul Bike Image](seoulbikes.jpeg)
+![Seoul Bike Image](Images/seoulbikes.jpeg)
 
 # Description
 This project is a data warehousing solution designed to source, store, and model data from the UC Irvine Machine Learning Repository about rental bikes introduced in urban cities. It aims to provide a centralized repository for analyzing and visualizing hourly bike counts based on hours of the day, temperature, rainfall, etc. 
