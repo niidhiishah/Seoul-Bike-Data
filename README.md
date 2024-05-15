@@ -58,14 +58,25 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 ![Updated DB Schema](https://github.com/niidhiishah/Seoul-Bike-Data/blob/main/dbschema/Updated%20dbschema.png)
 
 ### Serving the data 
-+ Below are some of the data visualizations
++ Below are some of the data visualizations. The link to the visualizations can be found [here](https://public.tableau.com/views/SeoulBikeDataVisualizations/BikesRentedonHolidaysFunctioningDays?:language=en-US&publish=yes&:sid=&:display_count=n&:origin=viz_share_link). 
 
+![Bike Rentals Per Year](Images/BikeRentalsperYear.png)
+This visual shows the bikes rented per year. 
 
+![Bike Rentals Per Season](Images/BikeRentalsSeason.png)
+This visual shows the distribution of bike rentals per season.
 
+![Bike Rentals if Holidays](Images/BikeRentalsHoliday.png)
+This pie chart shows the amount of bikes rented on holidays vs no holidays. 
 
+## Conclusions 
+After extracting, loading, transforming, and visualizing this data, we are able to see that the bikes in Seoul are most frequently rented during the summer. There are very few bikes that are rented in the winter, probably due to the colder weather. There was also a major increase in the number of bike rentals from 2017 to 2018, which suggests that after the introduction of the bikes in 2017, they garnered lots of popularity. Finally, we can see that bikes are most rented on functioning days when people are commuting to work, and when there are no holidays. We can assume that most people use these bikes to commute to work. 
 
 ## Issues I ran into/Future Considerations
 + Github will not allow you to upload code with your AWS access key, etc. Make sure to remove it and replace with placeholders
 + When attempting to upload a picture to the repo through VS Code, there was a prompt "There are no staged changes to commit. Would you like to stage all your changes and commit them directly?" DO NOT PRESS YES. It makes it very difficult to commit and push changes from that point forward (hence why the data modeling folder has not been displayed)
++ Connecting to the datawarehouse through redshift was extremely tough for me - I think it was because the table I originally created did not match up with the columns of the data.
+
+
 
 
