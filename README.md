@@ -40,8 +40,6 @@ The data dictionary can be found here: [Data Dictionary](https://archive.ics.uci
 
 ![DB Schema](dbschema/dbschema.png)
 
-Before moving onto transforming the data, the data had to be moved into into an AWS Redshift table. This was done by loading the data into a s3 bucket and then using the Redshift Query Editor's "Load Data" feature to create a table directly from the s3 bucket. To be sure that the bucket can be accessed, I created an IAM role solely for Redshift and assigned it to the bucket. 
-
 ### Transforming the data 
 + The data was transformed according to specific business rules. 
 + Examples of **some** transformations that were done: 
@@ -60,7 +58,9 @@ Before moving onto transforming the data, the data had to be moved into into an 
 ![Updated DB Schema](https://github.com/niidhiishah/Seoul-Bike-Data/blob/main/dbschema/Updated%20dbschema.png)
 
 ### Serving the data 
-+ x
++ Below are some of the data visualizations
+
+
 
 
 
